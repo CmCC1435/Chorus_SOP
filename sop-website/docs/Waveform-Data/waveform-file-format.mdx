@@ -103,7 +103,7 @@ In your `SUBMISSION.md` file, please describe your preferred format and include 
 - A description of each variable (e.g. `StartTime` represents the time at the start of the first sample in the
 message stream)
 - The data type for each variable
-- Units of each variable, if applicable
+- Units of each variable, where useful. For the signal data, please provide the units of the amplitude. Also, please provide time units (milliseconds, microseconds, epoch time, etc.) for the variables representing the time of the samples.    
 - Details on how the data is encoded, if applicable
 - Details on whether sample intervals are uniform across waveform types and channels. High-frequency waveforms should have uniform sample intervals, but if this is not the case please explain why. We expect that numerics files may have non-uniform sample intervals.
 - Pair-based submissions
@@ -119,7 +119,7 @@ Please submit mapping file(s) which will allow us to convert the site specific i
 The mapping file should have the following columns. For each signal in your data (e.g. ECG lead II, PPG, EEG lead FP1, etc.) add a row which supplies this information:
 - `signal_id`: the (integer, or string) variable that indicates signal name in your submitted format
 - `standardized_label`: the standardized signal label name (string) that your `signal_id` maps to. See standardized channel naming above for details on how to do this mapping
-- `sampling_rate`: the nominal sampling rate for the channel, in Hz (float) 
+- `sampling_rate`: the nominal sampling rate for the channel, in Hz (float). Please provide as much precision as is known to you (e.g. 249.987 Hz).  
 - `units`: a string giving the units of the channel
 
 Pair-based submissions should also have:
@@ -135,7 +135,7 @@ Submit your mapping file(s) to [CHoRUS to WFDB converter repo](https://github.co
 
 ## 5. Linking Waveform Sessions to Visits
 
-A table named `waveform_visit_links.csv` should be provided under the `/OMOP/` folder. This table should have a column for `visit_occurrence_id`, and `session_id`. If the data collection system does not provide a direct linkage between `session_id` and `visit_occurrence_id`, it may be necessary to infer this linkage based on the start and end time of the session. Keep in mind that the session start and end may not exactly match the admission, discharge, or transfer time in the EHR.
+A table named `waveform_visit_links.csv` should be provided under the `/OMOP/` folder. This table should have a column for `visit_occurrence_id`, `visit_detail_id`, and `session_id`. If the data collection system does not provide a direct linkage between `session_id` and `visit_occurrence_id`, it may be necessary to infer this linkage based on the start and end time of the session but this should only be done as a last resort. Keep in mind that the session start and end may not exactly match the admission, discharge, or transfer time in the EHR. See [Multimodal-Linkage](https://chorus-ai.github.io/Chorus_SOP/docs/Multimodal-Linkage/) for more detail.
 
 ---
 
